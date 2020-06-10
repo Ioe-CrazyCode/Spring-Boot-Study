@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml版本 和 编码方式 -->
+<!-- 根元素 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--  pom版本 -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 用于指定父pom -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <!-- 最重要的标签，可以唯一确定该依赖的jar -->
+    <!-- 代表公司组织的名称，一般为公司域名的倒写 -->
+    <groupId>com.example</groupId>
+    <!-- 代表该项目全局唯一id -->
+    <artifactId>demo</artifactId>
+    <!-- 指该项目的版本 -->
+    <version>0.0.1-SNAPSHOT</version>
+    <name>demo</name>
+    <description>Demo project for Spring Boot</description>
+    <!-- 用于声明一些常量 -->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <!-- 依赖的根元素 -->
+    <dependencies>
+        <!-- 内容具体为各个依赖的三个坐标 -->
+        <!-- 如，groupID、artifactId和version -->
+        <!-- version 可以省略。缺省，就会默认为最新发布的版本 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 引入Actuator 起步依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <!-- 构建标签 -->
+    <build>
+        <!-- 插件标签 -->
+        <plugins>
+            <!-- Spring Boot 插件，用此插件可以启动 Spring Boot 工程 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
