@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: eureka-server
+  security:
+    user:
+      name: ioenn
+      password: ioenn
+management:
+  server:
+    servlet:
+      context-path: /eureka
+eureka:
+  instance:
+    status-page-url-path: ${management.server.servlet.context-path}/info
+    health-check-url-path:  ${management.server.servlet.context-path}/health
+
+---
+spring:
+  profiles: peer1
+server:
+  port: 8885
+eureka:
+  instance:
+    hostname: peer1
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://ioenn:ioenn@peer1:8885/eureka/,http://ioenn:ioenn@peer2:8886/eureka/,http://ioenn:ioenn@peer3:8887/eureka/,
+    registerWithEureka: true
+    fetchRegistry: true
+
+---
+spring:
+  profiles: peer2
+server:
+  port: 8886
+eureka:
+  instance:
+    hostname: peer2
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://ioenn:ioenn@peer2:8886/eureka/,http://ioenn:ioenn@peer1:8885/eureka/,http://ioenn:ioenn@peer3:8887/eureka/,
+    registerWithEureka: true
+    fetchRegistry: true
+
+---
+spring:
+  profiles: peer3
+server:
+  port: 8887
+eureka:
+  instance:
+    hostname: peer3
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://ioenn:ioenn@peer3:8887/eureka/,http://ioenn:ioenn@peer1:8885/eureka/,http://ioenn:ioenn@peer2:8886/eureka/,
+    registerWithEureka: true
+    fetchRegistry: true

@@ -1,0 +1,15 @@
+spring:
+  profiles: peer3
+  application:
+    name: eureka-server
+server:
+  port: 8887
+eureka:
+  instance:
+    hostname: peer3
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://peer3:8887/eureka/,http://peer1:8885/eureka/,http://peer2:8886/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
